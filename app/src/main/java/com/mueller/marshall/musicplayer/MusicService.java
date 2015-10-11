@@ -18,7 +18,7 @@ import android.util.Log;
 /**
  * Created by marshallmueller on 10/10/15.
  */
-public class MusicService extends Service implements MediaPlayer.OnPreparedListener,
+public class MusicService extends android.app.Service implements MediaPlayer.OnPreparedListener,
  MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener {
 
     //data
@@ -80,7 +80,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
 
     @Override
     public void onPrepared(MediaPlayer mp) {
-
+        //start playback
+        mp.start();
     }
 
     @Override
@@ -106,5 +107,9 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
             Log.e("MUSIC SERVICE", "Error setting data source", e);
         }
         player.prepareAsync();
+    }
+
+    public void setSong(int songIndex) {
+        songPosn = songIndex;
     }
 }
